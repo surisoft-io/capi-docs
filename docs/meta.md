@@ -22,11 +22,18 @@ Here you have a full list of all the metadata available:
 | `namespace`          | :material-close: | null            |
 
 
-??? note
+??? Note
 
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla et euismod
-    nulla. Curabitur feugiat, tortor non consequat finibus, justo purus auctor
-    massa, nec semper lorem quam in massa.
+    Below you can find a detailed description about all the metadata fields available.
+    If you are not using Spring Boot (the examples used in the documentation), please refer to Hashicorp Consul API, to check how to register your service.
+    In the Consul catalog, the metadata needs to apper like the example below:
+    ```json
+    "ServiceMeta": {
+        "group": "dev",
+        "ingress": "http://sample.dev",
+        
+    }
+    ```
 
 
 # Secured
