@@ -25,4 +25,4 @@ CAPI supports features such as: routing, user authentication, throttling, limiti
 * Certificate Manager (using the CAPI Manager API)
 * Supports Hashicorp Consul for service discovery
 
-    
+[Let us know if you find any issue with the documentation](https://github.com/surisoft-io/capi-lb/issues/new?assignees=&labels=use+case&template=use_case.md&title=%5BDOCS%5D+){ .md-button }

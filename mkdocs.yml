@@ -54,6 +54,7 @@ extra:
       link: https://docker.io/surisoft
 
 markdown_extensions:
+  - attr_list
   - tables
   - pymdownx.highlight:
       anchor_linenums: true
