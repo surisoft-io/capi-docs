@@ -1,0 +1,75 @@
+site_name: CAPI Gateway Documentation
+repo_name: surisoft-io/capi
+repo_url: https://github.com/surisoft-io/capi
+theme:
+  logo: assets/capi-camel-white.svg
+  name: material
+  features:
+    - navigation.instant
+    - navigation.sections
+    - toc.integrate
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - content.tabs.link
+    - content.code.annotation
+    - content.code.copy
+    - header.autohide
+  language: en
+  palette:
+    - scheme: default
+      toggle:
+        icon: material/toggle-switch-off-outline 
+        name: Switch to dark mode
+      primary: blue
+      accent: purple 
+    - scheme: slate 
+      toggle:
+        icon: material/toggle-switch
+        name: Switch to light mode    
+      primary: blue
+      accent: lime
+nav:
+  - Home: 'index.md'
+  - Service Metadata: 'meta.md'
+  - Consul: 'consul.md'
+  - OAuth2: 'oauth2.md'
+  - Open Policy Agent: 'opa.md'
+  - Websocket: 'websocket.md'
+  - Helm: 'helm.md'
+  - How to configure CAPI: 'config.md'
+  - About: 'about.md'
+extra:
+  consent:
+    title: Cookie consent
+    description: >- 
+      We use cookies to recognize your repeated visits and preferences, as well
+      as to measure the effectiveness of our documentation and whether users
+      find what they're searching for. With your consent, you're helping us to
+      make our documentation better.
+  social:
+    - icon: fontawesome/brands/github-alt
+      link: https://github.com/surisoft-io
+    - icon: fontawesome/brands/docker
+      link: https://docker.io/surisoft
+
+markdown_extensions:
+  - tables
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - admonition
+  - pymdownx.arithmatex:
+      generic: true
+  - footnotes
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.mark
+  - attr_list
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+
+copyright: |
+  &copy; 2024 <a href="https://github.com/surisoft-io"  target="_blank" rel="noopener">Surisoft SRL Belgium</a>
