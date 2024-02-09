@@ -3,6 +3,7 @@ repo_name: surisoft-io/capi
 repo_url: https://github.com/surisoft-io/capi
 theme:
   logo: assets/capi-camel-white.svg
+  favicon: assets/favicon.ico
   name: material
   features:
     - navigation.instant
