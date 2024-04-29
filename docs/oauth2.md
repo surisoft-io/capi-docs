@@ -49,7 +49,7 @@ Example for a service called `sample`, available on `/capi/sample/dev`:
   "client_id": "example-client"
 }
 ```
-* If the third step fails, CAPI will check if the claim `subscription` is present and if so, if any group in the subscription list matches the subscriptions-groups of your service. `see Service.serviceMeta.subscription-groups`
+* If the third step fails, CAPI will check if the claim `subscription` is present and if so, if any group in the subscription list matches the subscriptions-group of your service. `see Service.serviceMeta.subscription-group`
 Example for a subscription group called `webapp1`:
 ```json
 {
