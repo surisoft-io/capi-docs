@@ -20,7 +20,7 @@ Here you have a full list of all the metadata available:
 | `open-api`           | :material-close: | null            |
 | `opa-rego`           | :material-close: | null            |
 | `namespace`          | :material-close: | null            |
-
+| `keep-group-first`   | :material-close: | false           |
 
 ??? Note
 
@@ -79,3 +79,42 @@ spring:
 With the following configuration, CAPI will ignore the IP in the ServiceAddress and ServicePort, and use the endpoint defined in the ingress.
 
 # Open-API
+If you want CAPI to only allow valid requests for your service, you need to provide your open api endpoint.
+
+CAPI will read your service definition, and will only allow requests to existing operations.
+
+CAPI will also check for authorization if any of your operations defines a security requirement.
+```yaml
+spring:
+  application:
+    name: sample
+  cloud:
+    consul:
+      discovery:
+        metadata:
+          open-api: http://local/sample/v3/api-docs
+```
+
+# Keep Group First
+By default, when CAPI is reading your service definition, it will take the service name (sample) and your metadata.group (dev) to create the route for your service, your service will then be exposed in the following fashion:
+
+`http://local:8380/capi/sample/dev`
+
+If you want the route to be created with the group first, you can enable this:
+
+```yaml
+spring:
+  application:
+    name: sample
+  cloud:
+    consul:
+      discovery:
+        metadata:
+          group: dev
+          keep-group-first: true
+```
+If enable your service will be exposed in the following fashion
+
+`http://local:8380/capi/dev/sample`
+
+

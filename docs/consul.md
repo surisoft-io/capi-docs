@@ -1,6 +1,6 @@
 # Consul Integration
 
-# How to make your service discovered by Consul and CAPI?
+## How to make your service discovered by Consul and CAPI?
 
 CAPI integrates with Hashicorp Consul (see Configuration, to find how to enable).
 The following example uses a dummy service implemented with Spring Boot.
@@ -9,7 +9,6 @@ There are many strategies of making your service to be discovered by Consul, but
 * Install Hashicorp Consul agent on your Kubernetes cluster: (https://developer.hashicorp.com/consul/docs/k8s)
 * Enable Consul auto discovery on your Spring Boot project. 
 
-## Key Features
 
 
 ## Let's use the second for our example
@@ -57,7 +56,10 @@ If CAPI is running with the default configuration on your localhost, you should 
 ```
 curl http://localhost:8380/capi/dummy/dev/actuator/health
 ```
-If you then scale up your service by having another instance running on 8081, that instance will also self register on Consul and it will be added as a new node in the "dummy" service. CAPI will then detect this change and add the new node to the routing mechanism. 
+
+If you then scale up your service by having another instance running on 8081, that instance will also self register on Consul and it will be added as a new node in the "dummy" service. 
+
+CAPI will then detect this change and add the new node to the routing mechanism. 
 
 After you will be able to observe CAPI load balancing between your 2 nodes.
 
@@ -65,7 +67,9 @@ After you will be able to observe CAPI load balancing between your 2 nodes.
 
 CAPI will always check the Consul's metadata `metadata:` to figure out how to deploy a service.
 
-The only mandatory field in the metadata is the group (`group`). CAPI will use this field to determine your context.
+The only mandatory field in the metadata is the group (`group`). 
+
+CAPI will use this field to determine your context.
 
 Example for a service called `test-service`:
 
@@ -78,7 +82,7 @@ If this example your service will be exposed on `/capi/test-service/prod/`.
 Here are optional metadata info that your service can send to Consul.
 
 * `schema`: If your service is exposed on HTTPS, declare this field as: *https*. (Default: HTTP)
-* `secured`: If you want CAPI to protect your service (See `Authentication`, declare this field with *true*) (Default: false)
+* `secured`: If you want CAPI to protect your service ( [See oauth2 integration](oauth2.md)), declare this field with *true*) (Default: false)
 * `subscription-group`: If CAPI is proctecting your service, you may want to declare which subscribers are allowed to consume your service.
 Example:
 ```yaml
@@ -88,7 +92,7 @@ metadata:
 ```
 In this example only JWT tokens with one of `webapp1` or `webapp2` in the subscription claim will be able to consume your service.
 
-* `type`: If your service is a *Websocket*, declare this field as *websocket*, and CAPI will make your websocket available. (See `Websocket Support`).
+* `type`: If your service is a *Websocket*, declare this field as *websocket*, and CAPI will make your websocket available.  [See Websocket Support](websocket.md)).
 
 * `keep-group`: By default, CAPI will not forward any headers related with CAPI itself, but if you need your service to know the context where your service is exposed, you can use this metadata property for CAPI to send the information on a header.
 Example: Service `/capi/test-service/production`:
@@ -96,6 +100,7 @@ Example: Service `/capi/test-service/production`:
 metadata:
   keep-group: true
 ```
+
 CAPI will forward the request to your service, with an extra-header: 
 `capi-group: /test-service/production`.
  
@@ -115,7 +120,17 @@ CAPI will forward the request to your service, with an extra-header:
  ```
  If you don't define any allowed origins, CAPI will allow the OPTIONS request for any Origin.
 
+ For a complete list of available `metadata` go to [Metadata Integration](meta.md).
+
+ ## Consul Key Value Store
+
+ CAPI can use Consul KV API to store distributed runtime data.
  
+ #### Currently supported features:
+ 
+ * CORS Allowed Headers: CAPI instance always starts with a default set of allowed headers (used by browser preflight requests). If you want to be able to add/remove allowed headers at runtime without having to restart your instances you can use the Metrics endpoint to manage the headers, they will be added to Consul KV Store and updated on all CAPI running nodes.
 
+#### Features in the roadmap to be supported:
 
-
+* Truststore updates
+* Sticky sessions alternative to Kafka.
