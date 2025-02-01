@@ -11,9 +11,23 @@ Websocket is disabled by default, to enable, just run CAPI with the following co
     enabled: true
     server:
       host: localhost
-      port: 8381      
+      port: 8382      
 ```
-With the following configuration, CAPI will be listening for Websocket requests on localhost port 8381.
+
+Make sure that your CAPI instance is running in one of the following modes:
+Full mode means CAPI will search (Consul) for all type of enabled services:
+```
+capi:
+   mode: full
+```
+Websocket mode means CAPI will only search (Consul) for websocket services.:
+```
+capi:
+   mode: websocket
+```
+
+With the following configuration, CAPI will be listening for Websocket requests on localhost port 8382.
+
 #### Important information regarding Websockets.
 CAPI will only look into the initial HTTP request, for authorization if needed. After the protocol update, you should manage the connection between your websocket client and your websocket server.
 If your client or server drops the connection, you will need to start a new request.
@@ -40,5 +54,5 @@ this.websocket.onopen = (event: any) => {
 *Important info* about Authorization: CAPI actively supports Keycloak as an oauth2 provider, but you should still be able to use any oauth2 compliant provider. See `Authorization` section to know how CAPI authorizes a request.
 
 #### For CAPI to know that your API is a Websocket, please set `Service.serviceMeta.type` to `websocket`.
-(See `Consul Integration`)
+(Check [Consul Integration](#meta))
 

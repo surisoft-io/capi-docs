@@ -3,24 +3,9 @@
 ````yaml
 capi:
   namespace: local
+  mode: full
   strict: false
   public-endpoint: http://localhost:8380/capi/
-  
-  #### Kafka is still experimental ####
-  kafka:
-    enabled: false
-    host:
-    topic:
-    group-instance:
-    group-id:
-    ssl:
-      enabled: false
-      keystore:
-        location:
-        password:
-      truststore:
-        location:
-        password:
   
   reverse:
     proxy:
@@ -38,6 +23,11 @@ capi:
     server:
       host: localhost
       port: 8382
+  # SSE (Server sent events) Integration    
+  sse:
+    enabled: false
+    server:
+      port: 8383  
 
   # Traces Integration
   traces:
@@ -48,6 +38,8 @@ capi:
   consul:
     kv:
       enabled: false
+      host: http://localhost:8500
+      token: 
       timer:
         interval: 20000
     token:
@@ -65,6 +57,7 @@ capi:
       enabled: false
       path: /some/context/path/cacerts
       password: <somepassword>
+      encoded: 
   
   version: ^project.version^
   name: ^project.name^
@@ -109,18 +102,11 @@ capi:
     cookieName:
     provider:
       enabled: true
-      keys:
-        http://host/jwks.json
+      keys: http://host/jwks.json
      
   # OPA Integration   
   opa:
     enabled: false
     endpoint: http://localhost:8181
   
-  # Time to live for Sticky Sessions feature
-  sticky:
-    session:
-      time:
-        to:
-          live: 2
 ````
